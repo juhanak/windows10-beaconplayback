@@ -1,0 +1,5 @@
+{"settings": {"mode":"local", "repeat": 2},
+"events":[
+    {"id1":"43676723-7400-0000-ffff-0000ffff0007", "id2":"24888", "id3":"23777", "duration":2,"sleep":1,},
+    {"id1":"43676723-7400-0000-ffff-0000ffff0007", "id2":"24888", "id3":"23777", "duration":2,"sleep":1,}
+]}

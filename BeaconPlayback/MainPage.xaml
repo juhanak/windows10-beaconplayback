@@ -1,0 +1,65 @@
+﻿<Page
+    x:Name="thisPage"
+    x:Class="BeaconPlayback.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BeaconPlayback"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <DataTemplate x:Name="logEntryItemTemplate">
+            <StackPanel Margin="3">
+                <TextBlock
+                    Style="{StaticResource BodyTextBlockStyle}"
+                    FontWeight="ExtraLight">
+                    <Run Text="--- " />
+                    <Run Text="{Binding Timestamp}" />
+                    <Run Text="---" />
+                </TextBlock>
+                <TextBlock
+                    Style="{StaticResource BodyTextBlockStyle}"
+                    TextWrapping="Wrap"
+                    Text="{Binding Message}" />
+            </StackPanel>
+        </DataTemplate>
+    </Page.Resources>
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <ListBox 
+            Background="Transparent"
+            Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
+            Grid.Row="1" 
+            x:Name="logEntryListBox"
+            ItemsSource="{Binding Path=LogEntryItemCollection}"
+            ItemTemplate="{StaticResource logEntryItemTemplate}" />
+    </Grid>
+    <Page.BottomAppBar>
+        <CommandBar>
+            <CommandBar.PrimaryCommands>
+                <AppBarButton
+                    x:Name="Open"
+                    Label="Open"
+                    Icon="OpenFile"
+                    Click="OnOpen" 
+                    IsEnabled="{Binding FileOpenEnabled, Mode=OneWay}"
+                    />
+                <AppBarButton
+                    x:Name="StarStop"
+                    Label="Start"
+                    Icon="Play"
+                    IsEnabled="{Binding StartStopEnabled, Mode=OneWay}"
+                    Click="OnStartStop" />
+                <AppBarToggleButton
+                    IsChecked="{Binding Repeat, Mode=TwoWay}"
+                    x:Name="Repeat"
+                    Label="Repeat"
+                    Icon="RepeatAll"
+                    IsEnabled="{Binding RepeatToggleEnabled, Mode=OneWay}"
+                     />
+            </CommandBar.PrimaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
+</Page>
